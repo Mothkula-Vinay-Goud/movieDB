@@ -24,5 +24,13 @@ class moviefirstPageCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setData(movieModel:movieModel){
+        movieTitle.text = "Title : \(movieModel.title)"
+        moviePopularityScore.text = "Popularity Score : \(movieModel.score)"
+       movieReleaseYear.text =   "Release Year : \(movieModel.year)"
+        customImageView.image = UIImage(named: movieModel.imageView)
+        
+    }
+    
 
 }

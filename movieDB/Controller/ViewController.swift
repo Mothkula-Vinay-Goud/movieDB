@@ -8,44 +8,27 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+//    MARK: Property
     @IBOutlet weak var firstPageTableView: UITableView!
-    var allMoviesData: [movieModel] = [
-        movieModel(
-            title: "Ad Astra",
-            score: 176.614,
-            year: 2019,
-            imageView: "adastra"
-        ),
-        movieModel(
-            title: "Hamilton",
-            score: 143.114,
-            year: 2020,
-            imageView: "hamilton"
-        ),
-        movieModel(
-            title: "Zathura",
-            score: 143.114,
-            year: 2020,
-            imageView: "zathura"
-        ),
-        movieModel(
-            title: "Eurovision",
-            score: 143.114,
-            year: 2020,
-            imageView: "adastra"
-        )
-    ]
+    var allMoviesData: [movieModel] = []
+    
+    //  MARK: View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Movies"
         // Do any additional setup after loading the view.
         firstPageTableView.dataSource = self
         firstPageTableView.delegate = self
+        
+        //get mockdata
+        allMoviesData = movieModel.MockData()
     }
+    
+    
 }
 
        
-
+//  MARK: Delegate Methods
 extension ViewController: UITableViewDelegate {
 
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -54,10 +37,11 @@ extension ViewController: UITableViewDelegate {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = storyboard.instantiateViewController(
-        withIdentifier: "movieDescriptionVC"
+            withIdentifier: ViewControllerIdentifier.movieDescriptionVC.rawValue
         ) as! movieDescriptionVC
 
         // Send data
+            
         detailVC.selectedMovie = selectedMovie
 
         // Navigate
@@ -65,20 +49,30 @@ extension ViewController: UITableViewDelegate {
         }
 }
 
+//  MARK: DataSouce Methods
 extension  ViewController: UITableViewDataSource{
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section == 0 {
+//            return "Movies"
+//        }
+//       return ""
+//    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allMoviesData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "moviefirstPageCell", for: indexPath) as! moviefirstPageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableCellIdentifier.moviefirstPageCell.rawValue, for: indexPath) as! moviefirstPageCell
         
-        let movie = allMoviesData[indexPath.row]
+        cell.setData(movieModel: allMoviesData[indexPath.row])
         
-        cell.movieTitle.text = "Title : \(movie.title)"
-        cell.moviePopularityScore.text = "Popularity Score : \(movie.score)"
-        cell.movieReleaseYear.text =   "Release Year : \(movie.year)"
-        cell.customImageView.image = UIImage(named: movie.imageView)
+//        let movie = allMoviesData[indexPath.row]
+//        cell.movieTitle.text = "Title : \(movie.title)"
+//        cell.moviePopularityScore.text = "Popularity Score : \(movie.score)"
+//        cell.movieReleaseYear.text =   "Release Year : \(movie.year)"
+//        cell.customImageView.image = UIImage(named: movie.imageView)
         return cell
     }
 }
