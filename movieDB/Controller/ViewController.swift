@@ -23,11 +23,14 @@ class ViewController: UIViewController {
         firstTableView?.dataSource = self
         firstTableView?.delegate = self
         firstTableView?.translatesAutoresizingMaskIntoConstraints = false
-        firstTableView?.register(moviefirstPageCell.self, forCellReuseIdentifier: "moviefirstPageCell")
+        firstTableView?.register(MoviefirstPageCell.self, forCellReuseIdentifier: "MoviefirstPageCell")
         
         //get mockdata
         allMoviesData = movieModel.MockData()
-        //  MARK: Adding Subviews and Constraints
+        addSubviewsConstraints()
+    }
+    //  MARK: Adding Subviews and Constraints
+    func addSubviewsConstraints(){
         if let firstTableView = firstTableView {
             view.addSubview(firstTableView)
             NSLayoutConstraint.activate([
@@ -38,6 +41,7 @@ class ViewController: UIViewController {
                 
                 ])
         }
+        
     }
 }
 //  MARK: Delegate Methods
@@ -51,7 +55,7 @@ extension ViewController: UITableViewDelegate {
 //        let detailVC = storyboard.instantiateViewController(
 //            withIdentifier: "movieDescriptionVC"
 //        ) as! movieDescriptionVC
-         let detailVC = movieDescriptionVC()
+         let detailVC = MovieDescriptionVC()
             
         // Send data
             
@@ -77,7 +81,7 @@ extension  ViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "moviefirstPageCell", for: indexPath) as! moviefirstPageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MoviefirstPageCell", for: indexPath) as! MoviefirstPageCell
         cell.setData(movieModel: allMoviesData[indexPath.row])
         
 //        let movie = allMoviesData[indexPath.row]

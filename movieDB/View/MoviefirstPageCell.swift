@@ -14,8 +14,6 @@ class MoviefirstPageCell: UITableViewCell {
     var moviePopularityScore: UILabel?
     var movieReleaseYear: UILabel?
     var movieRating: UILabel?
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         movieTitle = UILabel()
@@ -23,8 +21,14 @@ class MoviefirstPageCell: UITableViewCell {
         movieReleaseYear = UILabel()
         customImageView = UIImageView()
         movieRating = UILabel()
-        
-        //Attributes
+        addingAttributes()
+        addSubviewConstraints()
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    //Attributes
+    func addingAttributes(){
         movieTitle?.textColor = .green
         movieTitle?.translatesAutoresizingMaskIntoConstraints = false
         moviePopularityScore?.textColor = .black
@@ -34,9 +38,9 @@ class MoviefirstPageCell: UITableViewCell {
         customImageView?.translatesAutoresizingMaskIntoConstraints = false
         movieRating?.textColor = .black
         movieRating?.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        //  MARK: Adding Subviews and Constraints
+    }
+    //  MARK: Adding Subviews and Constraints
+    func addSubviewConstraints(){
         if let movieTitle = movieTitle, let moviePopularityScore = moviePopularityScore, let movieReleaseYear = movieReleaseYear, let customImageView = customImageView, let movieRating = movieRating {
             contentView.addSubview(movieTitle)
             contentView.addSubview(moviePopularityScore)
@@ -73,13 +77,8 @@ class MoviefirstPageCell: UITableViewCell {
             ])
         }
         
-        
-        
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     //adding data to the properties
     func setData(movieModel:movieModel){
         movieTitle?.text = "Title : \(movieModel.title)"
