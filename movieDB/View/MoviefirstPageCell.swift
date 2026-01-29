@@ -7,7 +7,7 @@
 
 import UIKit
 
-class moviefirstPageCell: UITableViewCell {
+class MoviefirstPageCell: UITableViewCell {
     //    MARK: Property
     var customImageView: UIImageView?
     var movieTitle: UILabel?

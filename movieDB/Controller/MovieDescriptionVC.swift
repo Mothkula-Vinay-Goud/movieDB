@@ -7,7 +7,7 @@
 
 import UIKit
 
-class movieDescriptionVC: UIViewController {
+class MovieDescriptionVC: UIViewController {
     //    MARK: Property
     var customImageView2: UIImageView?
     var movieTitle2: UILabel?
