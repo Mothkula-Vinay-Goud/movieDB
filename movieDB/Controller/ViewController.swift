@@ -9,25 +9,41 @@ import UIKit
 
 class ViewController: UIViewController {
 //    MARK: Property
-    @IBOutlet weak var firstPageTableView: UITableView!
+   
+    
+    var firstTableView: UITableView?
+    
     var allMoviesData: [movieModel] = []
     
     //  MARK: View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Movies"
+//        navigationItem.title = "Movies"
         // Do any additional setup after loading the view.
-        firstPageTableView.dataSource = self
-        firstPageTableView.delegate = self
+        
+        view.backgroundColor = .white
+        firstTableView = UITableView()
+        firstTableView?.dataSource = self
+        firstTableView?.delegate = self
+        
+        firstTableView?.translatesAutoresizingMaskIntoConstraints = false
+        firstTableView?.register(moviefirstPageCell.self, forCellReuseIdentifier: "moviefirstPageCell")
         
         //get mockdata
         allMoviesData = movieModel.MockData()
+        
+        if let firstTableView = firstTableView {
+            view.addSubview(firstTableView)
+            NSLayoutConstraint.activate([
+                firstTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                firstTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                firstTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                firstTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+                
+                ])
+        }
     }
-    
-    
 }
-
-       
 //  MARK: Delegate Methods
 extension ViewController: UITableViewDelegate {
 
@@ -35,11 +51,12 @@ extension ViewController: UITableViewDelegate {
 
         let selectedMovie = allMoviesData[indexPath.row]
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let detailVC = storyboard.instantiateViewController(
-            withIdentifier: ViewControllerIdentifier.movieDescriptionVC.rawValue
-        ) as! movieDescriptionVC
-
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let detailVC = storyboard.instantiateViewController(
+//            withIdentifier: "movieDescriptionVC"
+//        ) as! movieDescriptionVC
+         let detailVC = movieDescriptionVC()
+            
         // Send data
             
         detailVC.selectedMovie = selectedMovie
@@ -64,7 +81,8 @@ extension  ViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableCellIdentifier.moviefirstPageCell.rawValue, for: indexPath) as! moviefirstPageCell
+        print("execueted")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "moviefirstPageCell", for: indexPath) as! moviefirstPageCell
         
         cell.setData(movieModel: allMoviesData[indexPath.row])
         
@@ -73,7 +91,10 @@ extension  ViewController: UITableViewDataSource{
 //        cell.moviePopularityScore.text = "Popularity Score : \(movie.score)"
 //        cell.movieReleaseYear.text =   "Release Year : \(movie.year)"
 //        cell.customImageView.image = UIImage(named: movie.imageView)
+        
         return cell
+        
+        
     }
 }
 
