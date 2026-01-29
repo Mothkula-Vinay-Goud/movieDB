@@ -45,7 +45,7 @@ class MovieDescriptionVC: UIViewController {
         movieRating?.translatesAutoresizingMaskIntoConstraints = false
 
         movieDescription = UILabel()
-        movieDescription?.numberOfLines = 5
+        movieDescription?.numberOfLines = 0
         movieDescription?.textAlignment = .center
         movieDescription?.translatesAutoresizingMaskIntoConstraints = false
 
