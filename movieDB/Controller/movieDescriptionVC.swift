@@ -26,4 +26,7 @@ class movieDescriptionVC: UIViewController {
         movieReleaseYear.text = "Release Year: \(selectedMovie?.year ?? 0)"
         customImageView2.image = UIImage(named: selectedMovie?.imageView ?? "")
     }
+    
 }
+
+
