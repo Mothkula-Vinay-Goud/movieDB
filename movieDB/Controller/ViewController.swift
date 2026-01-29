@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         firstTableView?.dataSource = self
         firstTableView?.delegate = self
         firstTableView?.translatesAutoresizingMaskIntoConstraints = false
-        firstTableView?.register(MoviefirstPageCell.self, forCellReuseIdentifier: "MoviefirstPageCell")
+        firstTableView?.register(MovieFirstPageCell.self, forCellReuseIdentifier: "MovieFirstPageCell")
         
         //get mockdata
         allMoviesData = movieModel.MockData()
@@ -81,7 +81,7 @@ extension  ViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MoviefirstPageCell", for: indexPath) as! MoviefirstPageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieFirstPageCell", for: indexPath) as! MovieFirstPageCell
         cell.setData(movieModel: allMoviesData[indexPath.row])
         
 //        let movie = allMoviesData[indexPath.row]
