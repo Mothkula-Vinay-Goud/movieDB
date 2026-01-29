@@ -80,7 +80,7 @@ class MovieFirstPageCell: UITableViewCell {
     }
     
     //adding data to the properties
-    func setData(movieModel:movieModel){
+    func setData(movieModel:MovieModel){
         movieTitle?.text = "Title : \(movieModel.title)"
         moviePopularityScore?.text = "Popularity Score : \(movieModel.score)"
        movieReleaseYear?.text =   "Release Year : \(movieModel.year)"

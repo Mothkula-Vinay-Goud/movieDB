@@ -15,7 +15,7 @@ class MovieDescriptionVC: UIViewController {
     var movieReleaseYear: UILabel?
     var movieRating: UILabel?
     var movieDescription: UILabel?
-    var selectedMovie: movieModel?
+    var selectedMovie: MovieModel?
     
     //  MARK: View LifeCycle Methods
     override func viewDidLoad() {

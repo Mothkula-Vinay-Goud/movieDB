@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
 //    MARK: Property
     var firstTableView: UITableView?
-    var allMoviesData: [movieModel] = []
+    var allMoviesData: [MovieModel] = []
     
     //  MARK: View LifeCycle Methods
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         firstTableView?.register(MovieFirstPageCell.self, forCellReuseIdentifier: "MovieFirstPageCell")
         
         //get mockdata
-        allMoviesData = movieModel.MockData()
+        allMoviesData = MovieModel.MockData()
         addSubviewsConstraints()
     }
     //  MARK: Adding Subviews and Constraints
