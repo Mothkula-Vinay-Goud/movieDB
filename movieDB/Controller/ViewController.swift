@@ -9,29 +9,25 @@ import UIKit
 
 class ViewController: UIViewController {
 //    MARK: Property
-   
-    
     var firstTableView: UITableView?
-    
     var allMoviesData: [movieModel] = []
     
     //  MARK: View LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.title = "Movies"
+        navigationItem.title = "Movies"
         // Do any additional setup after loading the view.
         
         view.backgroundColor = .white
         firstTableView = UITableView()
         firstTableView?.dataSource = self
         firstTableView?.delegate = self
-        
         firstTableView?.translatesAutoresizingMaskIntoConstraints = false
         firstTableView?.register(moviefirstPageCell.self, forCellReuseIdentifier: "moviefirstPageCell")
         
         //get mockdata
         allMoviesData = movieModel.MockData()
-        
+        //  MARK: Adding Subviews and Constraints
         if let firstTableView = firstTableView {
             view.addSubview(firstTableView)
             NSLayoutConstraint.activate([
@@ -74,16 +70,14 @@ extension  ViewController: UITableViewDataSource{
 //        }
 //       return ""
 //    }
-    
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allMoviesData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("execueted")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "moviefirstPageCell", for: indexPath) as! moviefirstPageCell
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: "moviefirstPageCell", for: indexPath) as! moviefirstPageCell
         cell.setData(movieModel: allMoviesData[indexPath.row])
         
 //        let movie = allMoviesData[indexPath.row]
@@ -93,8 +87,6 @@ extension  ViewController: UITableViewDataSource{
 //        cell.customImageView.image = UIImage(named: movie.imageView)
         
         return cell
-        
-        
     }
 }
 

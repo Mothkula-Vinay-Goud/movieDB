@@ -8,7 +8,7 @@
 import UIKit
 
 class moviefirstPageCell: UITableViewCell {
-
+    //    MARK: Property
     var customImageView: UIImageView?
     var movieTitle: UILabel?
     var moviePopularityScore: UILabel?
@@ -22,6 +22,7 @@ class moviefirstPageCell: UITableViewCell {
         moviePopularityScore = UILabel()
         movieReleaseYear = UILabel()
         customImageView = UIImageView()
+        movieRating = UILabel()
         
         //Attributes
         movieTitle?.textColor = .green
@@ -31,13 +32,17 @@ class moviefirstPageCell: UITableViewCell {
         movieReleaseYear?.textColor = .black
         movieReleaseYear?.translatesAutoresizingMaskIntoConstraints = false
         customImageView?.translatesAutoresizingMaskIntoConstraints = false
+        movieRating?.textColor = .black
+        movieRating?.translatesAutoresizingMaskIntoConstraints = false
         
         
-        if let movieTitle = movieTitle, let moviePopularityScore = moviePopularityScore, let movieReleaseYear = movieReleaseYear, let customImageView = customImageView {
+        //  MARK: Adding Subviews and Constraints
+        if let movieTitle = movieTitle, let moviePopularityScore = moviePopularityScore, let movieReleaseYear = movieReleaseYear, let customImageView = customImageView, let movieRating = movieRating {
             contentView.addSubview(movieTitle)
             contentView.addSubview(moviePopularityScore)
             contentView.addSubview(movieReleaseYear)
             contentView.addSubview(customImageView)
+            contentView.addSubview(movieRating)
             
             NSLayoutConstraint.activate([
                 customImageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10),
@@ -48,17 +53,21 @@ class moviefirstPageCell: UITableViewCell {
                 customImageView.widthAnchor.constraint(equalToConstant: 120),
                 customImageView.heightAnchor.constraint(equalToConstant: 150),
     
-                movieTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+                movieTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
                 movieTitle.leadingAnchor.constraint(equalTo: customImageView.trailingAnchor, constant: 10),
                 movieTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
                 
-                moviePopularityScore.topAnchor.constraint(equalTo: movieTitle.bottomAnchor, constant: 10),
+                moviePopularityScore.topAnchor.constraint(equalTo: movieTitle.bottomAnchor, constant: 15),
                 moviePopularityScore.leadingAnchor.constraint(equalTo: customImageView.trailingAnchor, constant: 10),
                 moviePopularityScore.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
                 
-                movieReleaseYear.topAnchor.constraint(equalTo: moviePopularityScore.bottomAnchor, constant: 5),
+                movieReleaseYear.topAnchor.constraint(equalTo: moviePopularityScore.bottomAnchor, constant: 15),
                 movieReleaseYear.leadingAnchor.constraint(equalTo: customImageView.trailingAnchor, constant: 10),
                 movieReleaseYear.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+                
+                movieRating.topAnchor.constraint(equalTo: movieReleaseYear.bottomAnchor, constant: 15),
+                movieRating.leadingAnchor.constraint(equalTo: customImageView.trailingAnchor, constant: 10),
+                movieRating.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
                 
                 
             ])
@@ -71,12 +80,14 @@ class moviefirstPageCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    //adding data to the properties
     func setData(movieModel:movieModel){
         movieTitle?.text = "Title : \(movieModel.title)"
         moviePopularityScore?.text = "Popularity Score : \(movieModel.score)"
        movieReleaseYear?.text =   "Release Year : \(movieModel.year)"
+        movieRating?.text = "Rating : \(movieModel.rating)"
         customImageView?.image = UIImage(named: "\(movieModel.imageView)")
+        
     }
 }
 
