@@ -48,7 +48,8 @@ When a cell is tapped, the app transitions to this detail screen:
 * [ ] Implement a "Favorites" feature using Core Data.
 
 ## Demo
-![Simulator Screen Recording - iPhone 17 Pro - 2026-02-03 at 12 36 39](https://github.com/user-attachments/assets/3c9337d2-1b3d-4ce2-8081-ba23351fea61)
+![Simulator Screen Recording - iPhone 17 Pro - 2026-02-03 at 13 58 48](https://github.com/user-attachments/assets/a097d9ec-be0a-46ce-9a89-55236eac026b)
+
 
 
 
