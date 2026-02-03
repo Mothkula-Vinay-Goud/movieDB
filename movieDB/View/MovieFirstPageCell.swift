@@ -80,13 +80,12 @@ class MovieFirstPageCell: UITableViewCell {
     }
     
     //adding data to the properties
-    func setData(movieModel:MovieModel){
-        movieTitle?.text = "Title : \(movieModel.title)"
-        moviePopularityScore?.text = "Popularity Score : \(movieModel.score)"
-       movieReleaseYear?.text =   "Release Year : \(movieModel.year)"
-        movieRating?.text = "Rating : \(movieModel.rating)"
-        customImageView?.image = UIImage(named: "\(movieModel.imageView)")
-        
+    func configure(with movie: MovieModel) {
+        movieTitle?.text = "Title: \(movie.title)"
+        moviePopularityScore?.text = "Popularity: \(movie.score)"
+        movieReleaseYear?.text = "Year: \(movie.year)"
+        movieRating?.text = "Rating: \(movie.rating)"
+        customImageView?.image = UIImage(named: movie.imageView)
     }
 }
 
